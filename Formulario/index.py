@@ -24,11 +24,18 @@ def home2():
 @app.route('/formulario1', methods=['GET', 'POST'])
 def formulario():
     """Obtiene los datos del formulario"""
-    if request.method == 'GET':
-        return render_template("form01.html")
-    elif request.method == 'POST':
-        return f"nombre={request.form('nombre')} | correo={request.form('correo')} | telefono={request.form('telefono')}"
+
+    if request.method == 'POST':
+        return f"nombre = {request.form.get('nombre')} | email = {request.form.get('correo')} | telefono = {request.form.get('telefono')}"
     return render_template("form01.html")
+    # if request.method == 'GET':
+    #     return render_template("form01.html")
+    # elif request.method == 'POST':
+    #     data = request.form.to_dict()
+    #     print(data)
+    #     return f"nombre = {request.form.get('nombre')}, email = {request.form.get('correo')}, telefono = {request.form.get('telefono')}"
+    # else:
+    #     return "Formulario no recibido"
 
 
 if __name__ == '__main__':
